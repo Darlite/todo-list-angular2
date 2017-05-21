@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let task of tasks">
+    <a [routerLink]="['/task/'+task.$key]">{{ task.title }}</a>
+  </li>
+</ul>
