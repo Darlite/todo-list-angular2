@@ -1,5 +1,7 @@
 <ul class="list-group">
-  <li class="list-group-item" *ngFor="let task of tasks">
+  <li class="list-group-item" *ngFor="let task of tasks" [ngStyle]="{'text-decoration': task.completed?'line-through':''}">
     <a [routerLink]="['/task/'+task.$key]">{{ task.title }}</a>
+    <a class="btn btn-success btn-xs" *ngIf="task.completed == false" (click)="onEditState(task)">Done</a>
+    <a class="btn btn-danger btn-xs" *ngIf="task.completed == true" (click)="onEditState(task)" >Not done</a>
   </li>
 </ul>

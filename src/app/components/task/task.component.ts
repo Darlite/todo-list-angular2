@@ -27,20 +27,28 @@ export class TaskComponent implements OnInit {
       this.task = task;
 
       let storageRef = firebase.storage().ref();
-      let spaceRef = storageRef.child(this.task.path);
-      storageRef.child(this.task.path).getDownloadURL().then((url) => {
-        // Set image url
-        this.imageUrl = url;
-      }).catch((error) => {
-        console.log(error);
-      });
+      // Check the presence of image
+      if (this.task.path != undefined) {
+        let spaceRef = storageRef.child(this.task.path);
+        storageRef.child(this.task.path).getDownloadURL()
+          .then((url) => {
+            // Set image url
+            this.imageUrl = url;
+          }).catch((error) => {
+            console.log(error);
+          });
+      }
     });
   }
-  
+
   onDeleteClick() {
     this.firebaseService.deleteTask(this.id);
-    
     this.router.navigate(['/tasks']);
+  }
+
+  onEditState(task) {
+    task.completed = !task.completed;
+    this.firebaseService.updateTask(task.$key, task);
   }
 
 }

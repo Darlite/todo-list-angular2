@@ -2,6 +2,7 @@
   <div class="container">
     <h1>ToDo-list</h1>
     <p>Take care of your plans</p>
-    <a (click)="login()"><img src="assets/img/google.png"></a>
+    <a *ngIf="!(user | async)" (click)="login()"><img src="assets/img/google.png"></a>
+    <a *ngIf="(user | async)" [routerLink]="['/tasks']">Go to the tasks</a>
   </div>
 </div>

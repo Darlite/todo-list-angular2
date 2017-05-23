@@ -6,11 +6,13 @@ import * as firebase from 'firebase/app';
 export class FirebaseService {
   tasks: FirebaseListObservable<any[]>;
   task: FirebaseObjectObservable<any>;
+  images: FirebaseListObservable<any[]>;
   folder: any;
 
   constructor(private db: AngularFireDatabase) {
     this.folder = 'taskImages';
     this.tasks = this.db.list('/tasks') as FirebaseListObservable<Task[]>;
+    this.images = this.db.list('/images') as FirebaseListObservable<Task[]>;
   }
 
   getTasks() {
@@ -25,7 +27,8 @@ export class FirebaseService {
   addTask(task) {
     // Create root ref
     let storageRef = firebase.storage().ref();
-    for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]) {
+    let selectedFile = (<HTMLInputElement>document.getElementById('image')).files[0];
+    if (selectedFile !== undefined) {
       let path = `/${this.folder}/${selectedFile.name}`;
       let iRef = storageRef.child(path);
       iRef.put(selectedFile).then((snapshot) => {
@@ -33,6 +36,8 @@ export class FirebaseService {
         task.path = path;
         return this.tasks.push(task);
       });
+    } else {
+      this.tasks.push(task);
     }
   }
   

@@ -14,5 +14,7 @@
     </div>
     <a class="btn btn-default" [routerLink]="['/edit-task/' + task.$key]">Edit</a>
     <a class="btn btn-danger" (click)="onDeleteClick()">Delete</a>
+    <a class="btn btn-success" *ngIf="task.completed == false" (click)="onEditState(task)">Done</a>
+    <a class="btn btn-warning" *ngIf="task.completed == true" (click)="onEditState(task)" >Not done</a>
   </div>
 </div>

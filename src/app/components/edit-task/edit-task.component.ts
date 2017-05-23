@@ -39,7 +39,6 @@ export class EditTaskComponent implements OnInit {
     }
 
     this.firebaseService.updateTask(this.id, task);
-
     this.router.navigate(['/tasks']);
   }
 

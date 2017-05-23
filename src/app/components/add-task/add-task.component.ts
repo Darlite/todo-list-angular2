@@ -13,6 +13,7 @@ export class AddTaskComponent implements OnInit {
   createdBy: any;
   date: any;
   image: any;
+  completed: boolean;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -27,12 +28,13 @@ export class AddTaskComponent implements OnInit {
       title: this.title,
       text: this.text,
       date: this.date,
-      createdBy: this.firebaseService.getUserName()
-    }
-    
+      createdBy: this.firebaseService.getUserName(),
+      completed: false
+    };
+
     this.firebaseService.addTask(task);
-    
     this.router.navigate(['tasks']);
   }
+  
 
 }

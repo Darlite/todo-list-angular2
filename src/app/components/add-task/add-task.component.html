@@ -1,4 +1,4 @@
-<a [routerLink]="['/tasks']">Back</a>
+<a [routerLink]="['/tasks']">Back to tasks</a>
 <br />
 <h2 class="page-header">Add Task</h2>
 <form (submit)="onAddSubmit()">
@@ -19,5 +19,5 @@
     <input id="image" name="image" [(ngModel)]="image" type="file" >
   </div>
   
-  <input type="submit" value="submit" class="btn btn-success">
+  <input type="submit" value="Submit" class="btn btn-success">
 </form>
