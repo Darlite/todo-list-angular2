@@ -8,7 +8,7 @@ To use the functionality of this project you should log in into your Google acco
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-# Screenshots
+## Screenshots
 
 To add task you should fill "title", "text" and "date" fields. Also you can add a picture to the task.
 
