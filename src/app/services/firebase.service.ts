@@ -26,25 +26,46 @@ export class FirebaseService {
 
   addTask(task) {
     // Create root ref
-    let storageRef = firebase.storage().ref();
     let selectedFile = (<HTMLInputElement>document.getElementById('image')).files[0];
     if (selectedFile !== undefined) {
-      let path = `/${this.folder}/${selectedFile.name}`;
-      let iRef = storageRef.child(path);
-      iRef.put(selectedFile).then((snapshot) => {
-        task.image = selectedFile.name;
-        task.path = path;
-        return this.tasks.push(task);
-      });
+      this.uploadImage(task, selectedFile);
     } else {
       this.tasks.push(task);
     }
   }
-  
+
+  uploadImage(task, selectedFile) {
+    let storageRef = firebase.storage().ref();
+    let path = `/${this.folder}/${selectedFile.name}`;
+    let iRef = storageRef.child(path);
+    iRef.put(selectedFile).then((snapshot) => {
+      task.image = selectedFile.name;
+      task.path = path;
+      return this.tasks.push(task);
+    });
+  }
+
+  updateImage(id, task) {
+    if (<HTMLInputElement>document.getElementById('image') !== null) {
+      let selectedFile = (<HTMLInputElement>document.getElementById('image')).files[0];
+      if (selectedFile !== undefined) {
+        let storageRef = firebase.storage().ref();
+        let path = `/${this.folder}/${selectedFile.name}`;
+        let iRef = storageRef.child(path);
+        iRef.put(selectedFile).then((snapshot) => {
+          task.image = selectedFile.name;
+          task.path = path;
+          return this.tasks.update(id, task);
+        });
+      }
+    }
+  }
+
   updateTask(id, task) {
+    this.updateImage(id, task);
     return this.tasks.update(id, task);
   }
-  
+
   deleteTask(id) {
     return this.tasks.remove(id);
   }

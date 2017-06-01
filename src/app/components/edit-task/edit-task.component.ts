@@ -8,12 +8,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit {
-  id;
-  title;
-  text;
-  createdBy;
-  date;
-  image;
+  id: any;
+  title: any;
+  text: any;
+  createdBy: any;
+  date: any;
+  image: any;
 
   constructor(
     private firebaseService: FirebaseService,

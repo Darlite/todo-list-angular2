@@ -1,7 +1,7 @@
 <a [routerLink]="['/tasks']">Back</a>
 <br />
 <h2 class="page-header">Edit Task</h2>
-<form (submit)="onEditSubmit()">
+<form (submit)="onEditSubmit()" autocomplete="off">
   <div class="form-group">
     <label>Title</label>
     <input class="form-control" type="text" [(ngModel)]="title" name="title" required>
@@ -15,10 +15,10 @@
     <label>Date</label>
     <input class="form-control" type="date" [(ngModel)]="date" name="date" required>
   </div>
-  <!--
+  
   <div class="form-group">
     <input id="image" name="image" [(ngModel)]="image" type="file" >
   </div>
-  -->
+  
   <input type="submit" value="Submit" class="btn btn-success">
 </form>

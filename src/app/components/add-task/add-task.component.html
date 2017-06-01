@@ -1,7 +1,7 @@
 <a [routerLink]="['/tasks']">Back to tasks</a>
 <br />
 <h2 class="page-header">Add Task</h2>
-<form (submit)="onAddSubmit()">
+<form (submit)="onAddSubmit()" autocomplete="off">
   <div class="form-group">
     <label>Title</label>
     <input class="form-control" type="text" [(ngModel)]="title" name="title" required>
